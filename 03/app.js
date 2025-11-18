@@ -23,9 +23,10 @@ class Article extends React.Component {
 		});
 	};
 	addComment(comment) {
-		if (comment.trim()) {
+		const trimmedComment = comment.trim();
+		if (trimmedComment) {
 			this.setState({
-				comments: [...this.state.comments, comment],
+				comments: [...this.state.comments, trimmedComment],
 				content: "",
 			});
 		}

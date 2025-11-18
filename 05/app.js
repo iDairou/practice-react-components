@@ -7,12 +7,13 @@ const root = createRoot(document.querySelector("#root"));
 class App extends React.Component {
 	state = {
 		data: null,
-		latitude: "",
-		longitude: "",
+		latitude: "52.232222",
+		longitude: "21.008333",
 	};
 
 	componentDidMount = () => {
 		this.fetchWeather();
+		console.log(this.state.data);
 	};
 
 	fetchWeather = () => {
@@ -25,6 +26,12 @@ class App extends React.Component {
 	inputChange = (e) => {
 		const { name, value } = e.target;
 		this.setState({ [name]: value });
+	};
+	fillCoordinates = (lat, lon) => {
+		this.setState({
+			latitude: lat,
+			longitude: lon,
+		});
 	};
 
 	render() {
@@ -50,6 +57,11 @@ class App extends React.Component {
 						{exampleCities.map((city) => (
 							<li key={city.name}>
 								{city.name}: {city.lat}, {city.lon}
+								<button
+									onClick={() => this.fillCoordinates(city.lat, city.lon)}
+								>
+									Wstaw
+								</button>
 							</li>
 						))}
 					</ul>
